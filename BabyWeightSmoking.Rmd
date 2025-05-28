@@ -1,0 +1,44 @@
+---
+title: "BabyWeightSmoking"
+author: "Ray Chen"
+date: "2025-05-28"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load Data
+```{r}
+data <- read.csv("BabyWeightSmoking.csv")
+head(data)
+```
+
+## Boxplot of MotherSmoke and BirthWeight
+```{r}
+boxplot_smoke <- boxplot(BirthWeight ~ MotherSmoke, data = data)
+```
+
+## Two Sample t-test
+null hypothesis: There is no difference in population mean age of mothers who smoke and those who do not smoke
+```{r}
+t_test_smoking <- t.test(MothersAge ~ MotherSmoke, data = data)
+t_test_smoking
+```
+Since p value is significantly large, we fail to reject the null hypothesis
+
+## Scatter graph of MothersAge versus BirthWeight and linear regression model for prediction
+```{r}
+plot(data$MothersAge, data$BirthWeight, 
+     xlab = "Mother's Age", 
+     ylab = "Birth Weight", 
+     main = "Scatter Plot of Mother's Age and Birth Weight",)
+abline(lm(BirthWeight ~ MothersAge, data = data))
+
+```
+
+## Prediction of BirthWeight given MothersAge 40 years old using linear regression
+```{r}
+model <- lm(BirthWeight ~ MothersAge, data = data)
+predict(model, data.frame(MothersAge = 40))
+```
