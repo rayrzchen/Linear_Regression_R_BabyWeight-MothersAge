@@ -1,0 +1,1 @@
+This is an R Markdown to do several analysis based on the data of BabyWeight,MothersAge,MothersSmoking. Analysis includes data visulazation using boxplot & scatter graph, linear regression analysis on the relationship between BabyWeight and MothersAge. 
